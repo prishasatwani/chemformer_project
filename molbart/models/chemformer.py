@@ -172,7 +172,6 @@ class Chemformer:
 
         if dataloader is None:
             dataloader = self.get_dataloader(dataset)
-
         X_encoded = []
         for b_idx, batch in enumerate(dataloader):
             batch = self.on_device(batch)
@@ -237,7 +236,7 @@ class Chemformer:
             self.datamodule = datamodule
 
         self.datamodule.setup()
-        n_cpus = len(os.sched_getaffinity(0))
+        n_cpus = 1 #len(os.sched_getaffinity(0))
         if self.n_gpus > 0:
             n_workers = n_cpus // self.n_gpus
         else:
@@ -363,7 +362,9 @@ class Chemformer:
                 or self.train_mode == "testing"
                 or self.train_mode == "eval"
             ):
-                model = BARTModel.load_from_checkpoint(self.model_path, decode_sampler=self.sampler)
+                #import pdb; pdb.set_trace()
+                model = BARTModel.load_from_checkpoint(self.model_path, decode_sampler=self.sampler, vocabulary_size=self.vocabulary_size)
+                
                 model.eval()
             else:
                 raise ValueError(f"Unknown training mode: {self.train_mode}")
@@ -562,7 +563,7 @@ class Chemformer:
                 if self.model.sampler.sample_unique:
                     smiles_batch = self.sampler.smiles_unique
                     log_lhs_batch = self.sampler.log_lhs_unique
-
+            import pdb; pdb.set_trace()
             sampled_smiles.extend(smiles_batch)
             log_lhs.extend(log_lhs_batch)
             target_smiles.extend(batch["target_smiles"])
