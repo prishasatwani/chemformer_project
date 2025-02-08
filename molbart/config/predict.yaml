@@ -13,7 +13,7 @@ n_unique_beams: null
 n_gpus: 0
 
 # Data
-data_path: "/Users/prishasatwani/Documents/Chemformer/uspto_50_first5.pickle" 
+data_path: # add data path 
 output_sampled_smiles: null
 vocabulary_path: bart_vocab_downstream.json
 task: forward_prediction    # ["forward_prediction", "backward_prediction", "mol_opt"]
@@ -22,10 +22,12 @@ n_chunks: 1
 data_device: cuda
 
 # Model
-model_path: "/Users/prishasatwani/Documents/Chemformer/combined.ckpt"
+model_path: ".../Chemformer/combined.ckpt" 
 model_type: bart            # ["bart", "unified"]
 dataset_part: full      # ["full", "train", "val", "test"]
 train_mode: eval
 
-datamodule: [molbart.data.seq2seq_data.Uspto50DataModule]
+datamodule: 
+  - MoleculeListDataModule
   #- SynthesisDataModule
+  # [molbart.data.seq2seq_data.Uspto50DataModule]
