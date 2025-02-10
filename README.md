@@ -17,12 +17,12 @@ conda activate chemformer
 
 2. Download the pre-trained model checkpoint [here](https://az.app.box.com/s/7eci3nd9vy0xplqniitpk02rbg9q2zcq/folder/144881804954). 
 3. Edit config file (config/predict.yaml)
-  - Add data_path and model_path
-  - Dataset should be a plain txt file with one SMILES string in each line. 
-4. Run latent_embeddings script to get encoder memory
+  - Add model_path
+
+4. Run latent_embeddings_single script to get encoder memory
 ```
 cd Chemformer
-python -m molbart.latent_embeddings
+python -m molbart.latent_embeddings_single
 ```
 
 -----
