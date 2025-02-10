@@ -13,7 +13,7 @@ n_unique_beams: null
 n_gpus: 0
 
 # Data
-data_path: # add data path 
+data_path: "/Users/prishasatwani/Documents/Chemformer/uspto_50_first5.pickle"
 output_sampled_smiles: null
 vocabulary_path: bart_vocab_downstream.json
 task: forward_prediction    # ["forward_prediction", "backward_prediction", "mol_opt"]
@@ -27,7 +27,6 @@ model_type: bart            # ["bart", "unified"]
 dataset_part: full      # ["full", "train", "val", "test"]
 train_mode: eval
 
-datamodule: 
-  - MoleculeListDataModule
+datamodule: [molbart.data.seq2seq_data.Uspto50DataModule]
   #- SynthesisDataModule
-  # [molbart.data.seq2seq_data.Uspto50DataModule]
+  
